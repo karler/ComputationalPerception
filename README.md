@@ -17,13 +17,15 @@ La Percepción Computacional es un campo de la IA que se centra en permitir que 
 
 Para el desarrollo de tecnologías avanzadas como los vehículos autónomos, los asistentes virtuales, los sistemas de vigilancia inteligente, entre otros. Al dotar a las máquinas de la capacidad de percibir y comprender el entorno, podemos crear sistemas más inteligentes, autónomos y capaces de interactuar de manera efectiva con el mundo y con los seres humanos.
 
-### Guías para instalar Python y Tesseract
+### Guías para instalar Python, Tesseract, OpenCV, Numpy
 - [Guía para Windows](Readme_windows.md)
 - [Guía para MacOs](Readme_MacOs.md)
 - [Guía para Linux](Readme_Linux.md)
   
 ### Enlaces Relacionados
-- [Documentación Oficial de Tesseract](https://github.com/tesseract-ocr/tesseract)
-- [Documentación de Python](https://www.python.org/doc/)
-- [Guía Completa de pytesseract](https://pypi.org/project/pytesseract/)
 
+- [Documentación Oficial de Tesseract](https://tesseract-ocr.github.io/)
+- [Documentación de Python](https://docs.python.org/3/)
+- [Guía Completa de pytesseract](https://pypi.org/project/pytesseract/)
+- [Documentación de OpenCV](https://docs.opencv.org/)
+- [Documentación de numpy](https://numpy.org/doc/)

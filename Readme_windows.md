@@ -1,4 +1,4 @@
-# Guía para Instalar Python y Tesseract en Windows
+# Guía para Instalar Python, Tesseract, OpenCV y numpy en Windows
 
 ## Paso 1: Instalar Python
 
@@ -16,7 +16,7 @@
      ```sh
      python --version
      ```
-   - Deberías ver la versión de Python que instalaste. 
+   - Deberías ver la versión de Python que instalaste.
 
 ## Paso 2: Instalar Tesseract
 
@@ -53,31 +53,50 @@
      ```
    - Deberías ver la versión de Tesseract y otra información relevante.
 
-## Paso 4: Instalar pytesseract
+## Paso 4: Instalar pytesseract, OpenCV y numpy
 
-1. **Instalar pytesseract:**
+1. **Instalar pytesseract, OpenCV y numpy:**
    - Abre una ventana de **Símbolo del sistema**.
-   - Ejecuta el siguiente comando para instalar `pytesseract` usando `pip`:
+   - Ejecuta los siguientes comandos para instalar `pytesseract`, `opencv-python` y `numpy` usando `pip`:
      ```sh
-     pip install pytesseract
+     pip install pytesseract opencv-python numpy
      ```
 
-## Paso 5: Configurar pytesseract en tu Script de Python
+## Paso 5: Configurar pytesseract y OpenCV en tu Script de Python
 
-1. **Importar y Configurar pytesseract en tu Script:**
-   - En tu script de Python, importa el módulo `pytesseract` y establece la ruta de Tesseract si es necesario:
+1. **Importar y Configurar pytesseract y OpenCV en tu Script:**
+   - En tu script de Python, importa los módulos `pytesseract`, `cv2` y `numpy` y establece la ruta de Tesseract si es necesario:
      ```python
      import pytesseract
+     import cv2
+     import numpy as np
+     import os
 
      # Si Tesseract no está en el PATH o si prefieres definirlo explícitamente:
      pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
-     # Uso de pytesseract para extraer texto de una imagen
-     from PIL import Image
-     text = pytesseract.image_to_string(Image.open('ruta_a_tu_imagen.png'))
-     print(text)
+     # Ruta a la imagen
+     file_path = 'auto01.jpg'
+
+     # Verificar si el archivo existe
+     if not os.path.exists(file_path):
+         print(f"File not found: {file_path}")
+     else:
+         # Cargar una imagen usando OpenCV
+         image = cv2.imread(file_path)
+
+         if image is None:
+             print(f"Failed to load image: {file_path}")
+         else:
+             # Convertir la imagen a escala de grises
+             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+             # Usar pytesseract para extraer texto de la imagen
+             text = pytesseract.image_to_string(gray)
+
+             print(text)
      ```
 
 ## Conclusión
 
-Ahora tienes Python, Tesseract y `pytesseract` configurados y listos para usar en tu sistema Windows, puedes empezar a desarrollar tus proyectos de reconocimiento óptico de caracteres (OCR).
+Ahora tienes Python, Tesseract, `pytesseract`, OpenCV y `numpy` configurados y listos para usar en tu sistema Windows. Puedes empezar a desarrollar tus proyectos de reconocimiento óptico de caracteres (OCR) y procesamiento de imágenes.

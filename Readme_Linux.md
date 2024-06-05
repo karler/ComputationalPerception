@@ -1,4 +1,4 @@
-# Guía para Instalar Python y Tesseract en Linux
+# Guía para Instalar Python, Tesseract, OpenCV y numpy en Linux
 
 ## Paso 1: Instalar Python
 
@@ -37,7 +37,7 @@
      ```
    - Deberías ver la versión de Tesseract y otra información relevante.
 
-## Paso 3: Crear un Entorno Virtual e Instalar pytesseract
+## Paso 3: Crear un Entorno Virtual e Instalar pytesseract, OpenCV y numpy
 
 1. **Crear un Entorno Virtual:**
    - En la ventana de **Terminal**, navega a la carpeta donde quieres crear el entorno virtual. Luego ejecuta:
@@ -53,26 +53,45 @@
      ```
    - Deberías ver el nombre del entorno virtual en el prompt de la terminal, indicando que está activado.
 
-3. **Instalar pytesseract en el Entorno Virtual:**
+3. **Instalar pytesseract, OpenCV y numpy en el Entorno Virtual:**
    - Con el entorno virtual activado, ejecuta:
      ```sh
-     pip install pytesseract
+     pip install pytesseract opencv-python-headless numpy
      ```
 
-## Paso 4: Configurar pytesseract en tu Script de Python
+## Paso 4: Configurar pytesseract y OpenCV en tu Script de Python
 
-1. **Importar y Configurar pytesseract en tu Script:**
-   - En tu script de Python, importa el módulo `pytesseract` y establece la ruta de Tesseract si es necesario:
+1. **Importar y Configurar pytesseract y OpenCV en tu Script:**
+   - En tu script de Python, importa los módulos `pytesseract`, `cv2` y `numpy` y establece la ruta de Tesseract si es necesario:
      ```python
      import pytesseract
+     import cv2
+     import numpy as np
+     import os
 
      # Si Tesseract no está en el PATH o si prefieres definirlo explícitamente:
      pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
 
-     # Uso de pytesseract para extraer texto de una imagen
-     from PIL import Image
-     text = pytesseract.image_to_string(Image.open('ruta_a_tu_imagen.png'))
-     print(text)
+     # Ruta a la imagen
+     file_path = 'auto001.jpg'
+
+     # Verificar si el archivo existe
+     if not os.path.exists(file_path):
+         print(f"File not found: {file_path}")
+     else:
+         # Cargar una imagen usando OpenCV
+         image = cv2.imread(file_path)
+
+         if image is None:
+             print(f"Failed to load image: {file_path}")
+         else:
+             # Convertir la imagen a escala de grises
+             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+             # Usar pytesseract para extraer texto de la imagen
+             text = pytesseract.image_to_string(gray)
+
+             print(text)
      ```
 
 2. **Desactivar el Entorno Virtual (cuando hayas terminado):**
@@ -83,4 +102,4 @@
 
 ## Conclusión
 
-Ahora tienes Python, Tesseract y `pytesseract` configurados y listos para usar en tu sistema Linux, puedes empezar a desarrollar tus proyectos de reconocimiento óptico de caracteres (OCR).
+Ahora tienes Python, Tesseract, `pytesseract`, OpenCV y `numpy` configurados y listos para usar en tu sistema Linux. Puedes empezar a desarrollar tus proyectos de reconocimiento óptico de caracteres (OCR) y procesamiento de imágenes.
